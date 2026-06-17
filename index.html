@@ -1,18 +1,920 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sruthi R | AI & ML Engineer | Portfolio</title>
     <meta name="description" content="Professional portfolio of Sruthi R, a B.E. CSE-AIML student, developer, and team leader specializing in artificial intelligence, machine learning, and full stack web development." />
+    
     <!-- Google Fonts: Outfit & Space Grotesk -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Outfit', 'sans-serif'],
+              mono: ['Space Grotesk', 'monospace'],
+            },
+            colors: {
+              slate: {
+                850: '#1e293b/80',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    
+    <!-- Custom stylesheet override -->
+    <link rel="stylesheet" href="/style.css" />
   </head>
-  <body class="bg-slate-950 text-slate-100">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body class="bg-slate-950 text-slate-100 antialiased selection:bg-indigo-500 selection:text-white font-sans relative min-h-screen overflow-x-hidden">
+    
+    <!-- Background Aura Gradients -->
+    <div class="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-indigo-500/10 blur-[120px] pointer-events-none glow-bg-indigo"></div>
+    <div class="absolute top-[30%] right-10 w-[400px] h-[400px] rounded-full bg-teal-500/10 blur-[100px] pointer-events-none glow-bg-teal"></div>
+    <div class="absolute bottom-[20%] left-10 w-[600px] h-[600px] rounded-full bg-purple-500/10 blur-[130px] pointer-events-none"></div>
+
+    <!-- Floating Header / Navbar -->
+    <header className="sticky top-4 z-50 max-w-6xl mx-auto px-4 md:px-6 mt-4">
+      <nav class="flex items-center justify-between px-6 py-4 rounded-2xl border border-slate-800/80 bg-slate-900/60 backdrop-blur-xl shadow-lg shadow-indigo-950/20">
+        <a href="#" class="flex items-center space-x-3 text-xl font-bold tracking-tight bg-gradient-to-r from-indigo-400 via-teal-400 to-emerald-400 bg-clip-text text-transparent">
+          <img src="/avatar.png" alt="Sruthi R logo" class="w-7 h-7 rounded-full object-cover border border-indigo-500/40 inline" />
+          <span>Sruthi R.</span>
+        </a>
+
+        <!-- Desktop Nav Items -->
+        <ul class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
+          <li><a href="#about" class="hover:text-indigo-400 transition-colors">About</a></li>
+          <li><a href="#skills" class="hover:text-indigo-400 transition-colors">Skills & Stats</a></li>
+          <li><a href="#experience" class="hover:text-indigo-400 transition-colors">Experience</a></li>
+          <li><a href="#projects" class="hover:text-indigo-400 transition-colors">Projects</a></li>
+          <li><a href="#achievements" class="hover:text-indigo-400 transition-colors">Achievements</a></li>
+        </ul>
+
+        <div class="hidden md:block">
+          <a 
+            href="#contact" 
+            class="px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-300 border border-slate-700 bg-slate-800/50 hover:bg-indigo-600 hover:border-indigo-500 hover:shadow-indigo-500/20 hover:shadow-md"
+          >
+            Get In Touch
+          </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-slate-300 hover:text-white" aria-label="Toggle Menu">
+          <!-- Menu (Hamburger) Icon -->
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <!-- X (Close) Icon -->
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Mobile Navigation Drawer -->
+      <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-4 right-4 p-6 rounded-2xl border border-slate-800 bg-slate-900/95 shadow-xl z-50">
+        <ul class="flex flex-col space-y-4 text-center font-medium text-slate-300">
+          <li><a href="#about" class="block py-2 hover:text-indigo-400">About</a></li>
+          <li><a href="#skills" class="block py-2 hover:text-indigo-400">Skills & Stats</a></li>
+          <li><a href="#experience" class="block py-2 hover:text-indigo-400">Experience</a></li>
+          <li><a href="#projects" class="block py-2 hover:text-indigo-400">Projects</a></li>
+          <li><a href="#achievements" class="block py-2 hover:text-indigo-400">Achievements</a></li>
+          <li><a href="#contact" class="block py-2 text-indigo-400 font-semibold">Contact</a></li>
+        </ul>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-6xl mx-auto px-4 md:px-6 pt-12 pb-24 space-y-28">
+
+      <!-- Hero Section -->
+      <section id="hero" class="flex flex-col md:flex-row items-center justify-between gap-12 pt-8 md:pt-16">
+        <div class="flex-1 space-y-6 text-center md:text-left">
+          <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-medium border border-indigo-500/30 bg-indigo-500/10 text-indigo-300">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Available for Collaborations</span>
+          </div>
+
+          <div class="space-y-3">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
+              Hi, I'm <span class="bg-gradient-to-r from-indigo-400 via-teal-300 to-emerald-400 bg-clip-text text-transparent">Sruthi R</span>
+            </h1>
+            <h2 class="text-xl md:text-2xl font-semibold text-slate-300 font-mono">
+              AI / ML Developer & Full Stack Engineer
+            </h2>
+          </div>
+
+          <p class="text-slate-400 leading-relaxed max-w-xl text-base md:text-lg">
+            Currently pursuing my B.E. at <span class="text-indigo-300 font-medium">Sri Eshwar College of Engineering</span>. Passionate about applying AI and machine learning techniques to solve real-world problems and building performant web products.
+          </p>
+
+          <!-- Quick Stats Grid -->
+          <div class="flex flex-wrap gap-4 justify-center md:justify-start">
+            <div class="px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+              <span class="text-xs text-slate-500 block">Current Focus</span>
+              <span class="text-sm font-semibold text-teal-300">CSE (AI & ML)</span>
+            </div>
+            <div class="px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+              <span class="text-xs text-slate-500 block">Coding Platform</span>
+              <span class="text-sm font-semibold text-amber-300">1100+ Solved</span>
+            </div>
+            <div class="px-4 py-2 rounded-xl bg-slate-900/60 border border-slate-800/80">
+              <span class="text-xs text-slate-500 block">Toastmasters</span>
+              <span class="text-sm font-semibold text-purple-300">VP Education</span>
+            </div>
+          </div>
+
+          <!-- Social & Contact Actions -->
+          <div class="flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start pt-2">
+            <a 
+              href="#projects" 
+              class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold bg-indigo-600 hover:bg-indigo-500 transition-all text-center text-white shadow-lg shadow-indigo-600/20 hover:shadow-indigo-600/35 hover:-translate-y-0.5"
+            >
+              View Projects
+            </a>
+            <div class="flex items-center space-x-3">
+              <!-- GitHub -->
+              <a href="https://github.com/sruthi-analyst/" target="_blank" rel="noreferrer" class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 hover:bg-slate-850 hover:text-white transition-colors" title="GitHub">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                  <path d="M9 18c-4.51 2-5-2-7-2" />
+                </svg>
+              </a>
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/in/sruthi-r-6b2768322/" target="_blank" rel="noreferrer" class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 hover:bg-slate-850 hover:text-indigo-400 transition-colors" title="LinkedIn">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                  <rect width="4" height="12" x="2" y="9" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+              </a>
+              <!-- Email -->
+              <a href="mailto:sruthi.r.analyst@gmail.com" class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 hover:bg-slate-850 hover:text-teal-400 transition-colors" title="Email">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2" />
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                </svg>
+              </a>
+              <!-- Phone -->
+              <a href="tel:9345125327" class="p-3 rounded-xl border border-slate-800 bg-slate-900/40 hover:bg-slate-850 hover:text-emerald-400 transition-colors" title="Call">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI Image / Avatar Grid -->
+        <div class="flex-1 flex justify-center relative">
+          <div class="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden border-2 border-indigo-500/20 shadow-2xl shadow-indigo-950/50 group">
+            <!-- Profile Image -->
+            <img 
+              src="/avatar.png" 
+              alt="Sruthi R" 
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+            <!-- Glass Overlay on Hover -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity"></div>
+            
+            <!-- Custom Bottom Label -->
+            <div class="absolute bottom-4 left-4 right-4 p-4 rounded-xl border border-white/10 bg-slate-900/80 backdrop-blur-md">
+              <span class="text-xs font-mono text-indigo-400 font-semibold uppercase tracking-wider block">AI / ML Student</span>
+              <span class="text-sm text-slate-200 font-bold">Solving problems with code</span>
+            </div>
+          </div>
+
+          <!-- Orbit / Floating badges -->
+          <div class="absolute -top-4 -right-4 bg-slate-900 border border-slate-800 px-3.5 py-1.5 rounded-2xl shadow-lg flex items-center space-x-2 animate-bounce">
+            <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            <span class="text-xs font-medium font-mono text-slate-300">HTML & JS Developer</span>
+          </div>
+          <div class="absolute bottom-10 -left-6 bg-slate-900 border border-slate-800 px-3.5 py-1.5 rounded-2xl shadow-lg flex items-center space-x-2">
+            <!-- Brain Icon SVG -->
+            <svg class="w-4 h-4 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z" />
+              <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z" />
+            </svg>
+            <span class="text-xs font-medium font-mono text-slate-300">GenAI Hackathon</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <hr class="border-slate-900" />
+
+      <!-- About / Education Section -->
+      <section id="about" class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div class="lg:col-span-1 space-y-4">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">Academic Background</h2>
+          <h3 class="text-3xl font-extrabold">Education & Goals</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Equipped with a solid foundation in computer science and algorithmic thinking, currently specializing in Artificial Intelligence and Machine Learning to model future-ready analytical tools.
+          </p>
+          <div class="p-5 rounded-2xl border border-slate-800/80 bg-slate-900/30 space-y-3">
+            <h4 class="font-bold text-slate-200">Non-Technical highlight</h4>
+            <p class="text-sm text-slate-400">
+              Talented <span class="text-teal-400 font-medium">Flutist</span> who has performed on numerous college stages including Freshwariites, Dhrona, and Thiran, in addition to securing 2nd prize in the Inter-College Instruments Competition.
+            </p>
+            <div class="flex items-center space-x-2 text-xs text-indigo-400 font-medium pt-1">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13" />
+                <circle cx="6" cy="18" r="3" />
+                <circle cx="18" cy="16" r="3" />
+              </svg>
+              <span>Flute Player (Oct 2024)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-2 space-y-6">
+          <!-- B.E CSE AIML -->
+          <div class="group relative flex flex-col md:flex-row justify-between p-6 rounded-2xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/50 hover:border-slate-700/80 transition-all duration-300">
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+                </svg>
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">B.E (CSE-AIML)</h4>
+              </div>
+              <p class="text-slate-400 text-sm md:text-base">Sri Eshwar College of Engineering</p>
+            </div>
+            <div class="mt-3 md:mt-0 flex flex-col items-start md:items-end justify-between">
+              <span class="text-xs font-mono text-slate-500 font-medium">2024 - 2028</span>
+              <span class="mt-1 px-3 py-1 rounded-full text-xs font-bold bg-teal-500/10 border border-teal-500/20 text-teal-300">CGPA: 8.45 (Sem III)</span>
+            </div>
+          </div>
+
+          <!-- HSC -->
+          <div class="group relative flex flex-col md:flex-row justify-between p-6 rounded-2xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/50 hover:border-slate-700/80 transition-all duration-300">
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+                </svg>
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">HSC (Higher Secondary Certificate)</h4>
+              </div>
+              <p class="text-slate-400 text-sm md:text-base">Arsha Vidya Mandir</p>
+            </div>
+            <div class="mt-3 md:mt-0 flex flex-col items-start md:items-end justify-between">
+              <span class="text-xs font-mono text-slate-500 font-medium">2023 - 2024</span>
+              <span class="mt-1 px-3 py-1 rounded-full text-xs font-bold bg-teal-500/10 border border-teal-500/20 text-teal-300">84.8%</span>
+            </div>
+          </div>
+
+          <!-- SSLC -->
+          <div class="group relative flex flex-col md:flex-row justify-between p-6 rounded-2xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/50 hover:border-slate-700/80 transition-all duration-300">
+            <div class="space-y-2">
+              <div class="flex items-center space-x-2">
+                <svg class="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+                  <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" />
+                </svg>
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">SSLC (Secondary School Leaving Certificate)</h4>
+              </div>
+              <p class="text-slate-400 text-sm md:text-base">Arsha Vidya Mandir</p>
+            </div>
+            <div class="mt-3 md:mt-0 flex flex-col items-start md:items-end justify-between">
+              <span class="text-xs font-mono text-slate-500 font-medium">2021 - 2022</span>
+              <span class="mt-1 px-3 py-1 rounded-full text-xs font-bold bg-teal-500/10 border border-teal-500/20 text-teal-300">94.4%</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <hr class="border-slate-900" />
+
+      <!-- Skills & Coding Stats Section -->
+      <section id="skills" class="space-y-12">
+        <div class="text-center space-y-3 max-w-2xl mx-auto">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">Expertise Dashboard</h2>
+          <h3 class="text-3xl font-extrabold">Technical Stacks & Metrics</h3>
+          <p class="text-slate-400">
+            A comprehensive breakdown of technical skills, developer toolkits, and achievements across competitive programming portals.
+          </p>
+        </div>
+
+        <!-- Platform Performance Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Skill Rack -->
+          <div class="relative overflow-hidden p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 transition-colors group">
+            <div class="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-tr from-amber-500 to-orange-600 opacity-5 group-hover:opacity-10 blur-xl transition-all"></div>
+            <h4 class="text-xs font-bold font-mono text-slate-400 uppercase tracking-wide">Skill Rack</h4>
+            <div class="mt-4 space-y-1">
+              <p class="text-xl font-extrabold text-slate-100">1100+ Problems Solved</p>
+              <p class="text-sm text-slate-500">13 Certificates | 300+ Bronzes</p>
+            </div>
+          </div>
+
+          <!-- LeetCode -->
+          <div class="relative overflow-hidden p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 transition-colors group">
+            <div class="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-600 opacity-5 group-hover:opacity-10 blur-xl transition-all"></div>
+            <h4 class="text-xs font-bold font-mono text-slate-400 uppercase tracking-wide">LeetCode</h4>
+            <div class="mt-4 space-y-1">
+              <p class="text-xl font-extrabold text-slate-100">90+ Problems Solved</p>
+              <p class="text-sm text-slate-500">Global Rank: 186,353</p>
+            </div>
+          </div>
+
+          <!-- CodeChef -->
+          <div class="relative overflow-hidden p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 transition-colors group">
+            <div class="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 opacity-5 group-hover:opacity-10 blur-xl transition-all"></div>
+            <h4 class="text-xs font-bold font-mono text-slate-400 uppercase tracking-wide">CodeChef</h4>
+            <div class="mt-4 space-y-1">
+              <p class="text-xl font-extrabold text-slate-100">Global Rank: 183,179</p>
+              <p class="text-sm text-slate-500">3 Gold Badges | Country Rank: 175,924</p>
+            </div>
+          </div>
+
+          <!-- SIH -->
+          <div class="relative overflow-hidden p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 transition-colors group">
+            <div class="absolute top-0 right-0 w-32 h-32 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 opacity-5 group-hover:opacity-10 blur-xl transition-all"></div>
+            <h4 class="text-xs font-bold font-mono text-slate-400 uppercase tracking-wide">Smart India Hackathon (SIH)</h4>
+            <div class="mt-4 space-y-1">
+              <p class="text-xl font-extrabold text-slate-100">SIH Finalist 2025</p>
+              <p class="text-sm text-slate-500">Team Leader & Logistics Developer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Detailed Categorized Skills -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+          <!-- Programming Languages -->
+          <div class="p-6 rounded-2xl border border-slate-800/80 bg-slate-900/30 flex flex-col space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-indigo-400">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="4 17 10 11 4 5" />
+                  <line x1="12" y1="19" x2="20" y2="19" />
+                </svg>
+              </div>
+              <h4 class="text-base font-bold text-slate-200">Programming Languages</h4>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">C</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Python</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">C++</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Java</span>
+            </div>
+          </div>
+
+          <!-- AI / ML & GenAI -->
+          <div class="p-6 rounded-2xl border border-slate-800/80 bg-slate-900/30 flex flex-col space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-teal-400">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.44 2.5 2.5 0 0 1 0-3.12 3 3 0 0 1 0-4.88 2.5 2.5 0 0 1 0-3.12A2.5 2.5 0 0 1 9.5 2Z" />
+                  <path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.44 2.5 2.5 0 0 0 0-3.12 3 3 0 0 0 0-4.88 2.5 2.5 0 0 0 0-3.12A2.5 2.5 0 0 0 14.5 2Z" />
+                </svg>
+              </div>
+              <h4 class="text-base font-bold text-slate-200">AI / ML & GenAI</h4>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Agentic AI</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">RAG</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Generative AI</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Machine Learning</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Deep Learning</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">NLP</span>
+            </div>
+          </div>
+
+          <!-- Technologies & Frameworks -->
+          <div class="p-6 rounded-2xl border border-slate-800/80 bg-slate-900/30 flex flex-col space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-teal-400">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6" />
+                  <polyline points="8 6 2 12 8 18" />
+                </svg>
+              </div>
+              <h4 class="text-base font-bold text-slate-200">Technologies & Frameworks</h4>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">React</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Supabase</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">SQL</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">PostgreSQL</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">HTML</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">CSS</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">JavaScript</span>
+            </div>
+          </div>
+
+          <!-- Tools & Analytics -->
+          <div class="p-6 rounded-2xl border border-slate-800/80 bg-slate-900/30 flex flex-col space-y-4">
+            <div class="flex items-center space-x-3">
+              <div class="p-2 rounded-xl bg-slate-900 border border-slate-800 text-fuchsia-400">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="21" x2="4" y2="14" />
+                  <line x1="4" y1="10" x2="4" y2="3" />
+                  <line x1="12" y1="21" x2="12" y2="12" />
+                  <line x1="12" y1="8" x2="12" y2="3" />
+                  <line x1="20" y1="21" x2="20" y2="16" />
+                  <line x1="20" y1="12" x2="20" y2="3" />
+                  <line x1="1" y1="14" x2="7" y2="14" />
+                  <line x1="9" y1="8" x2="15" y2="8" />
+                  <line x1="17" y1="16" x2="23" y2="16" />
+                </svg>
+              </div>
+              <h4 class="text-base font-bold text-slate-200">Tools & Analytics</h4>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2">
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Power BI</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">VS Code</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">GitHub</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Figma</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Canva</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">IntelliJ</span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-medium bg-slate-900/90 hover:bg-slate-850 border border-slate-800 transition-colors">Microsoft Excel</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <hr class="border-slate-900" />
+
+      <!-- Work / Internship Experience -->
+      <section id="experience" class="space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div class="space-y-3">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-teal-400 font-mono">Professional History</h2>
+            <h3 class="text-3xl font-extrabold">Internship & Experience</h3>
+          </div>
+          <p class="text-slate-400 max-w-md text-sm md:text-base">
+            Applying technical concepts in professional enterprise environments, building workflows and scalable systems.
+          </p>
+        </div>
+
+        <div class="relative pl-6 md:pl-8 border-l border-slate-800 space-y-12">
+          <!-- Sodexix Internship -->
+          <div class="relative group">
+            <div class="absolute -left-[31px] md:-left-[39px] top-1.5 w-4 h-4 rounded-full border-4 border-slate-950 bg-teal-400 group-hover:scale-125 transition-transform"></div>
+            <div class="space-y-3">
+              <div class="flex flex-col md:flex-row md:items-center justify-between gap-1">
+                <div>
+                  <h4 class="text-xl font-bold text-slate-100 group-hover:text-teal-400 transition-colors">ERP Development Intern</h4>
+                  <p class="text-sm font-medium text-slate-400">Sodexix India, Pvt. Ltd. — <span class="text-slate-500 font-normal">Puducherry</span></p>
+                </div>
+                <span class="text-xs font-mono text-slate-500 font-bold bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-xl self-start md:self-center">
+                  Dec 2025 - Jan 2026
+                </span>
+              </div>
+              <p class="text-slate-400 text-sm leading-relaxed max-w-3xl">
+                Gained hands-on experience in business suite software configuration and customization using Odoo ERP framework. Handled backend python controller setups, database schemas, and tailored customer relationship management integrations.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <hr class="border-slate-900" />
+
+      <!-- Projects Section -->
+      <section id="projects" class="space-y-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="space-y-3">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-indigo-400 font-mono">My Portfolio</h2>
+            <h3 class="text-3xl font-extrabold">Recent Technical Work</h3>
+          </div>
+
+          <!-- Filter buttons -->
+          <div class="flex flex-wrap gap-2">
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-medium transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-600/10" data-filter="all">All Work</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-medium transition-all border border-slate-850 bg-slate-900/30 text-slate-400 hover:text-white hover:bg-slate-900/60" data-filter="AI / Logistics">AI / Logistics</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-medium transition-all border border-slate-850 bg-slate-900/30 text-slate-400 hover:text-white hover:bg-slate-900/60" data-filter="Web / GenAI">Web / GenAI</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-medium transition-all border border-slate-850 bg-slate-900/30 text-slate-400 hover:text-white hover:bg-slate-900/60" data-filter="IoT / Hardware">IoT / Hardware</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-medium transition-all border border-slate-850 bg-slate-900/30 text-slate-400 hover:text-white hover:bg-slate-900/60" data-filter="Mobile App">Mobile App</button>
+          </div>
+        </div>
+
+        <!-- Project Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Navaura -->
+          <div class="project-card flex flex-col justify-between p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 hover:border-slate-700/65 transition-all duration-300 group" data-tag="AI / Logistics">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-2xs font-mono font-bold bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">AI / Logistics</span>
+                <span class="text-2xs font-mono text-slate-500">Dec 2025</span>
+              </div>
+              <div class="space-y-1">
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">Navaura</h4>
+                <p class="text-xs text-slate-400 font-medium">AI powered Logistics Optimizer</p>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed line-clamp-4">
+                Developed for Steel Authority of India Limited (SAIL) under SIH'25. Solves complex vehicle routing and supply chain optimization challenges using intelligent scheduling algorithms.
+              </p>
+            </div>
+            <div class="pt-6 space-y-4">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Python</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">AI Algorithms</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Optimization</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">SAIL</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Smart Power Strip -->
+          <div class="project-card flex flex-col justify-between p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 hover:border-slate-700/65 transition-all duration-300 group" data-tag="IoT / Hardware">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-2xs font-mono font-bold bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">IoT / Hardware</span>
+                <span class="text-2xs font-mono text-slate-500">Aug 2025</span>
+              </div>
+              <div class="space-y-1">
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">Smart Power Strip</h4>
+                <p class="text-xs text-slate-400 font-medium">MSME 5.0 Initiative</p>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed line-clamp-4">
+                An intelligent power-saving hardware integration aimed at monitoring appliance electricity usage and controlling output remotely to avoid energy wastage.
+              </p>
+            </div>
+            <div class="pt-6 space-y-4">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">IoT</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Hardware Integration</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Energy Management</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carpe Diem -->
+          <div class="project-card flex flex-col justify-between p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 hover:border-slate-700/65 transition-all duration-300 group" data-tag="Web / GenAI">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-2xs font-mono font-bold bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">Web / GenAI</span>
+                <span class="text-2xs font-mono text-slate-500">Aug 2025</span>
+              </div>
+              <div class="space-y-1">
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">Carpe Diem</h4>
+                <p class="text-xs text-slate-400 font-medium">GenAI Hackathon Financial Website</p>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed line-clamp-4">
+                Built a smart financial assistant site for the GenAI Hackathon leveraging IBM Granite 3.3 model, React frontend, and Firebase background management.
+              </p>
+            </div>
+            <div class="pt-6 space-y-4">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">React</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Firebase</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">IBM Granite 3.3</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">GenAI</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- APEP -->
+          <div class="project-card flex flex-col justify-between p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 hover:border-slate-700/65 transition-all duration-300 group" data-tag="Mobile App">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-2xs font-mono font-bold bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">Mobile App</span>
+                <span class="text-2xs font-mono text-slate-500">Apr 2025</span>
+              </div>
+              <div class="space-y-1">
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">APEP</h4>
+                <p class="text-xs text-slate-400 font-medium">Emotional Well-being Productivity App</p>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed line-clamp-4">
+                Designed and engineered an emotional productivity tracking application designed to improve mental well-being through integrated daily schedules and mood tracking.
+              </p>
+            </div>
+            <div class="pt-6 space-y-4">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Kotlin</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">XML</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Figma</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Android Studio</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Creatathon Portfolio -->
+          <div class="project-card flex flex-col justify-between p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 hover:border-slate-700/65 transition-all duration-300 group" data-tag="Web App">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-2xs font-mono font-bold bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">Web App</span>
+                <span class="text-2xs font-mono text-slate-500">Dec 2024</span>
+              </div>
+              <div class="space-y-1">
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">Creatathon Portfolio</h4>
+                <p class="text-xs text-slate-400 font-medium">Responsive Personal Site</p>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed line-clamp-4">
+                Created a modern and interactive landing page design displaying professional achievements and technical skills using raw web technologies.
+              </p>
+            </div>
+            <div class="pt-6 space-y-4">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">HTML5</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">CSS3</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">JavaScript</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- C Conclave -->
+          <div class="project-card flex flex-col justify-between p-6 rounded-2xl border border-slate-850 bg-slate-900/40 hover:bg-slate-900/80 hover:border-slate-700/65 transition-all duration-300 group" data-tag="System Software">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="px-3 py-1 rounded-full text-2xs font-mono font-bold bg-indigo-500/10 border border-indigo-500/20 text-indigo-400">System Software</span>
+                <span class="text-2xs font-mono text-slate-500">Dec 2024</span>
+              </div>
+              <div class="space-y-1">
+                <h4 class="text-lg font-bold text-slate-100 group-hover:text-indigo-400 transition-colors">C Conclave</h4>
+                <p class="text-xs text-slate-400 font-medium">Inventory Management System</p>
+              </div>
+              <p class="text-slate-500 text-sm leading-relaxed line-clamp-4">
+                Constructed a comprehensive command-line and local store stock tracker and management software utilizing efficient low-level C programming structures.
+              </p>
+            </div>
+            <div class="pt-6 space-y-4">
+              <div class="flex flex-wrap gap-1.5">
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">C Programming</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">Data Structures</span>
+                <span class="px-2 py-0.5 rounded bg-slate-900 text-slate-400 text-2xs font-medium">File Management</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <hr class="border-slate-900" />
+
+      <!-- Achievements & Certifications -->
+      <section id="achievements" class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Toastmasters & Achievements -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v13m0-13V6m0 2l-3-3m3 3l3-3m-6 3a9 9 0 1118 0v1a9 9 0 01-18 0v-1z"></path>
+            </svg>
+            <h3 class="text-2xl font-extrabold">Achievements</h3>
+          </div>
+          <div class="space-y-4">
+            <!-- Toastmasters VPE -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Vice President Education (VPE)</h4>
+                <p class="text-xs text-slate-500">Toastmasters International (SETC Chapter 2) — <span class="font-mono">Jul 2026 - Dec 2026</span></p>
+              </div>
+            </div>
+            <!-- Table Topics Contest -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">3rd Prize - Table Topics Contest</h4>
+                <p class="text-xs text-slate-500">Toastmasters SETC Chapter 2 — <span class="font-mono">Mar 2026</span></p>
+              </div>
+            </div>
+            <!-- Toastmasters SAA -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Sergeant at Arms (SAA)</h4>
+                <p class="text-xs text-slate-500">Toastmasters International (SETC Chapter 2) — <span class="font-mono">Jan 2026 - Jun 2026</span></p>
+              </div>
+            </div>
+            <!-- SIH Team Leader -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">SIH Finalist 2025 - Team Leader</h4>
+                <p class="text-xs text-slate-500">Smart India Hackathon — <span class="font-mono">Dec 2025</span></p>
+              </div>
+            </div>
+            <!-- Toastmasters Contest 3rd -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">3rd Prize - Evaluation Contest</h4>
+                <p class="text-xs text-slate-500">Toastmasters SETC Chapter 2 — <span class="font-mono">Sept 2025</span></p>
+              </div>
+            </div>
+            <!-- GenAI SmartInternz -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">GenAI Hackathon - Top 10 Finalist</h4>
+                <p class="text-xs text-slate-500">SmartInternz at Sri Eshwar College — <span class="font-mono">Aug 2025</span></p>
+              </div>
+            </div>
+            <!-- Flute Prize -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7" /><path d="M8.21 13.89L7 23l5-3 5 3-1.21-9.12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Second Prize - Inter College Instruments (Flute)</h4>
+                <p class="text-xs text-slate-500">Non-Technical Contest — <span class="font-mono">Oct 2024</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Certifications list -->
+        <div class="space-y-6">
+          <div class="flex items-center space-x-3">
+            <svg class="w-6 h-6 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+              <polyline points="22 4 12 14.01 9 11.01" />
+            </svg>
+            <h3 class="text-2xl font-extrabold">Certifications</h3>
+          </div>
+          <div class="space-y-4">
+            <!-- Power BI -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Microsoft Power BI Data Analyst</h4>
+                <p class="text-xs text-slate-500">Coursera — <span class="font-mono">Apr 2026</span></p>
+              </div>
+            </div>
+            <!-- Design Thinking -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Design Thinking - A Premier (Elite Silver)</h4>
+                <p class="text-xs text-slate-500">IITM (NPTEL) — <span class="font-mono">Mar 2026</span></p>
+              </div>
+            </div>
+            <!-- SIH Finale -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">SIH-2025 Grand Finale Participation</h4>
+                <p class="text-xs text-slate-500">Smart India Hackathon — <span class="font-mono">Dec 2025</span></p>
+              </div>
+            </div>
+            <!-- SQL Sololearn -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Introduction to SQL</h4>
+                <p class="text-xs text-slate-500">SoloLearn — <span class="font-mono">Oct 2025</span></p>
+              </div>
+            </div>
+            <!-- Java Badge -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Java Oracle Badge</h4>
+                <p class="text-xs text-slate-500">Oracle Learning Explorer — <span class="font-mono">Sept 2025</span></p>
+              </div>
+            </div>
+            <!-- GenAI IBM -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Introduction to Generative AI</h4>
+                <p class="text-xs text-slate-500">IBM SkillsBuild — <span class="font-mono">Aug 2025</span></p>
+              </div>
+            </div>
+            <!-- InfySpringboard -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">C, AI, DS, DL and NLP Certifications</h4>
+                <p class="text-xs text-slate-500">InfySpringboard — <span class="font-mono">Jun 2025</span></p>
+              </div>
+            </div>
+            <!-- Udemy DSA -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">Mastering Data Structures & Algorithms</h4>
+                <p class="text-xs text-slate-500">Abdul Bari (Udemy) — <span class="font-mono">May 2025</span></p>
+              </div>
+            </div>
+            <!-- C & CPP Spoken Tutorial -->
+            <div class="p-4 rounded-xl border border-slate-900 bg-slate-900/20 flex items-start space-x-3.5">
+              <div class="p-2 rounded-lg bg-emerald-500/10 text-emerald-400 mt-0.5">
+                <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12" /></svg>
+              </div>
+              <div class="flex-1 space-y-1">
+                <h4 class="text-sm font-bold text-slate-200">C & CPP Training Certificate</h4>
+                <p class="text-xs text-slate-500">Spoken Tutorial (IIT Bombay) — <span class="font-mono">Dec 2024</span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Divider -->
+      <hr class="border-slate-900" />
+
+      <!-- Contact Info Footer / CTA -->
+      <section id="contact" class="p-8 md:p-12 rounded-3xl border border-slate-800 bg-gradient-to-b from-indigo-950/20 to-slate-950 relative overflow-hidden text-center space-y-8">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(99,102,241,0.05),transparent_60%)]"></div>
+        
+        <div class="space-y-3 max-w-xl mx-auto relative">
+          <h2 class="text-xs font-bold uppercase tracking-wider text-teal-400 font-mono">Get In Touch</h2>
+          <h3 class="text-3xl md:text-4xl font-extrabold">Let's build something together</h3>
+          <p class="text-slate-400 leading-relaxed">
+            If you want to discuss a project, need a developer, or just want to connect, feel free to reach out directly.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 max-w-md mx-auto gap-4 relative">
+          <a 
+            href="mailto:sruthi.r.analyst@gmail.com" 
+            class="flex items-center justify-center space-x-3 p-4 rounded-xl border border-slate-800 bg-slate-900/40 hover:bg-slate-850 hover:border-slate-700 transition-colors"
+          >
+            <svg class="w-5 h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
+            <span class="text-sm font-semibold text-slate-200">sruthi.r.analyst@gmail.com</span>
+          </a>
+          <a 
+            href="tel:9345125327" 
+            class="flex items-center justify-center space-x-3 p-4 rounded-xl border border-slate-800 bg-slate-900/40 hover:bg-slate-850 hover:border-slate-700 transition-colors"
+          >
+            <svg class="w-5 h-5 text-teal-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+            <span class="text-sm font-semibold text-slate-200">9345125327</span>
+          </a>
+        </div>
+
+        <div class="flex justify-center space-x-6 pt-4 relative">
+          <!-- LinkedIn -->
+          <a href="https://www.linkedin.com/in/sruthi-r-6b2768322/" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-indigo-400 transition-colors flex items-center space-x-1.5 text-sm font-medium">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+          <!-- GitHub -->
+          <a href="https://github.com/sruthi-analyst/" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-white transition-colors flex items-center space-x-1.5 text-sm font-medium">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+              <path d="M9 18c-4.51 2-5-2-7-2" />
+            </svg>
+            <span>GitHub</span>
+          </a>
+          <!-- Kaggle -->
+          <a href="https://www.kaggle.com/sruthir" target="_blank" rel="noreferrer" class="text-slate-400 hover:text-amber-500 transition-colors flex items-center space-x-1.5 text-sm font-medium">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.82 2.457a.35.35 0 0 0-.469-.029L9.432 10.15 4.793 4.25a.35.35 0 0 0-.547.018l-1.636 2.08a.35.35 0 0 0 .041.47l5.962 5.097-5.996 5.378a.35.35 0 0 0-.012.497l1.794 1.932a.35.35 0 0 0 .506.012l4.896-4.996 8.784 7.625c.16.14.402.107.522-.073l2.002-3.003a.35.35 0 0 0-.074-.467L13.882 12.87l4.97-4.14 2.122-3.41c.105-.17.065-.39-.092-.511l-2.062-1.353z" />
+            </svg>
+            <span>Kaggle</span>
+          </a>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Mini footer -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-8 text-center text-xs text-slate-600">
+      <p>© <span id="current-year">2026</span> Sruthi R. All rights reserved. Crafted with HTML, Tailwind CSS & JS.</p>
+    </footer>
+
+    <!-- Script file -->
+    <script src="/script.js"></script>
   </body>
 </html>
